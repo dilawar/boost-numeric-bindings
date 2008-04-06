@@ -263,6 +263,15 @@ extern "C" {
                       dcomplex_t const* ap, int const* ipiv, 
                       dcomplex_t* b, int const* ldb, int* info);
 
+  /* banded */
+
+  void LAPACK_DGBTRF (int const* n, int const* m, int const* kl, int const* ku,
+                      double* ab, int const* ldab, int* ipiv, int* info);
+
+  void LAPACK_DGBTRS (char const* trans, int const* n, int const* kl, int const* ku, int const* nrhs, 
+                      double const* ab, int const* ldab, int const* ipiv, 
+                      double* b, int const* ldb, int* info);
+
 
   /**********************************************************************/
   /*                         eigenproblems                              */

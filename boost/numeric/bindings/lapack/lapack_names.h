@@ -47,7 +47,6 @@
 #define LAPACK_CGETRI FORTRAN_ID( cgetri )
 #define LAPACK_ZGETRI FORTRAN_ID( zgetri )
 
-
 /* symmetric/Hermitian positive definite */
 
 #define LAPACK_SPOSV FORTRAN_ID( sposv )
@@ -140,6 +139,11 @@
 #define LAPACK_ZSPTRS FORTRAN_ID( zsptrs )
 #define LAPACK_CHPTRS FORTRAN_ID( chptrs )
 #define LAPACK_ZHPTRS FORTRAN_ID( zhptrs )
+
+/* banded solve */
+
+#define LAPACK_DGBTRF FORTRAN_ID( dgbtrf )
+#define LAPACK_DGBTRS FORTRAN_ID( dgbtrs )
 
 
 /********************************************/
