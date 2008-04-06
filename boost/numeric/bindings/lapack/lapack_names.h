@@ -222,6 +222,24 @@
 
 
 /********************************************/
+/* Least Squares */ 
+
+#define LAPACK_SGELS FORTRAN_ID( sgels )
+#define LAPACK_DGELS FORTRAN_ID( dgels )
+#define LAPACK_CGELS FORTRAN_ID( cgels )
+#define LAPACK_ZGELS FORTRAN_ID( zgels )
+
+#define LAPACK_SGELSS FORTRAN_ID( sgelss )
+#define LAPACK_DGELSS FORTRAN_ID( dgelss )
+#define LAPACK_CGELSS FORTRAN_ID( cgelss )
+#define LAPACK_ZGELSS FORTRAN_ID( zgelss )
+
+#define LAPACK_SGELSD FORTRAN_ID( sgelsd )
+#define LAPACK_DGELSD FORTRAN_ID( dgelsd )
+#define LAPACK_CGELSD FORTRAN_ID( cgelsd )
+#define LAPACK_ZGELSD FORTRAN_ID( zgelsd )
+
+/********************************************/
 /* auxiliary */ 
 
 #define LAPACK_ILAENV FORTRAN_ID( ilaenv )

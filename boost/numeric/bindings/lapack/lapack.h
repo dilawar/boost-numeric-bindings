@@ -493,6 +493,65 @@ extern "C" {
 
 
   /********************************************************************/
+  /*                          Least Squares                           */
+  /********************************************************************/
+
+  void LAPACK_SGELS(const char* trans, const int* m, const int* n, 
+					const int *nrhs, float* a, const int* lda,
+					float* b, const int* ldb, float* work,
+					const int* lwork, int* info);
+  void LAPACK_DGELS(const char* trans, const int* m, const int* n, 
+					const int *nrhs, double* a, const int* lda,
+					double* b, const int* ldb, double* work,
+					const int* lwork, int* info);
+  void LAPACK_CGELS(const char* trans, const int* m, const int* n, 
+					const int *nrhs, fcomplex_t* a, const int* lda,
+					fcomplex_t* b, const int* ldb, fcomplex_t* work,
+					const int* lwork, int* info);
+  void LAPACK_ZGELS(const char* trans, const int* m, const int* n, 
+					const int *nrhs, dcomplex_t* a, const int* lda,
+					dcomplex_t* b, const int* ldb, dcomplex_t* work,
+					const int* lwork, int* info);
+
+
+  void LAPACK_SGELSS(const int *m, const int *n, const int *nrhs,
+					 float *a, const int *lda, float *b, const int *ldb,
+					 float *s, const float *rcond, int *rank, float *work,
+					 const int *lwork, int *info);
+  void LAPACK_DGELSS(const int *m, const int *n, const int *nrhs,
+					 double *a, const int *lda, double *b, const int *ldb,
+					 double *s, const double *rcond, int *rank, double *work,
+					 const int *lwork, int *info);
+  void LAPACK_CGELSS(const int *m, const int *n, const int *nrhs,
+					 fcomplex_t *a, const int *lda, fcomplex_t *b, const int *ldb,
+					 float *s, const float *rcond, int *rank, fcomplex_t *work,
+					 const int *lwork, float *rwork, int *info);
+  void LAPACK_ZGELSS(const int *m, const int *n, const int *nrhs,
+					 dcomplex_t *a, const int *lda, dcomplex_t *b, const int *ldb,
+					 double *s, const double *rcond, int *rank, dcomplex_t *work,
+					 const int *lwork, double *rwork, int *info);
+
+
+  void LAPACK_SGELSD(const int *m, const int *n, const int *nrhs,
+					 float *a, const int *lda, float *b, const int *ldb,
+					 float *s, const float *rcond, int *rank, float *work,
+					 const int *lwork, int *iwork, int *info);
+  void LAPACK_DGELSD(const int *m, const int *n, const int *nrhs,
+					 double *a, const int *lda, double *b, const int *ldb,
+					 double *s, const double *rcond, int *rank, double *work,
+					 const int *lwork, int *iwork, int *info);
+  void LAPACK_CGELSD(const int *m, const int *n, const int *nrhs,
+					 fcomplex_t *a, const int *lda, fcomplex_t *b, const int *ldb,
+					 float *s, const float *rcond, int *rank, fcomplex_t *work,
+					 const int *lwork, float *rwork, int *iwork, int *info);
+  void LAPACK_ZGELSD(const int *m, const int *n, const int *nrhs,
+					 dcomplex_t *a, const int *lda, dcomplex_t *b, const int *ldb,
+					 double *s, const double *rcond, int *rank, dcomplex_t *work,
+					 const int *lwork, double *rwork, int *iwork, int *info);
+  
+
+
+  /********************************************************************/
   /*                          auxiliary                               */
   /********************************************************************/
 
