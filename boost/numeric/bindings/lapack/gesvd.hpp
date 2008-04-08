@@ -278,7 +278,9 @@ namespace boost { namespace numeric { namespace bindings {
 
       int const m = traits::matrix_size1 (a);
       int const n = traits::matrix_size2 (a);
+#ifndef NDEBUG /* this variable is only used in assertions below */
       int const minmn = m < n ? m : n; 
+#endif
 
       assert (minmn == traits::vector_size (s)); 
       assert (!(jobu == 'O' && jobvt == 'O')); 
@@ -343,7 +345,9 @@ namespace boost { namespace numeric { namespace bindings {
 
       int const m = traits::matrix_size1 (a);
       int const n = traits::matrix_size2 (a);
+#ifndef NDEBUG /* this variable is only used in assertions below */
       int const minmn = m < n ? m : n; 
+#endif
 
       assert (minmn == traits::vector_size (s)); 
       assert (!(jobu == 'O' && jobvt == 'O')); 
@@ -495,7 +499,9 @@ namespace boost { namespace numeric { namespace bindings {
 
       int const m = traits::matrix_size1 (a);
       int const n = traits::matrix_size2 (a);
+#ifndef NDEBUG /* this variable is only used in assertions below */
       int const minmn = m < n ? m : n; 
+#endif
 
       assert (minmn == traits::vector_size (s)); 
 
