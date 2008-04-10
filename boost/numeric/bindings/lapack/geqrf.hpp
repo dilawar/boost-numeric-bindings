@@ -111,7 +111,7 @@ namespace boost { namespace numeric { namespace bindings {
 
       int const m = traits::matrix_size1 (a);
       int const n = traits::matrix_size2 (a);
-      assert (std::min(m,n) <= traits::vector_size (tau)); 
+      assert (std::min<int>(m,n) <= traits::vector_size (tau)); 
       assert (n <= traits::vector_size (work)); 
 
       int info; 
@@ -133,7 +133,7 @@ namespace boost { namespace numeric { namespace bindings {
     int geqrf (A& a, Tau& tau, optimal_workspace ) {
        typedef typename A::value_type value_type ;
        const int n = traits::matrix_size2 (a);
-       traits::detail::array<value_type> work(std::max(1, n*32));
+       traits::detail::array<value_type> work(std::max<int>(1, n*32));
        return geqrf( a, tau, work );
     }
 
@@ -145,7 +145,7 @@ namespace boost { namespace numeric { namespace bindings {
     int geqrf (A& a, Tau& tau, minimal_workspace ) {
        typedef typename A::value_type value_type ;
        const int n = traits::matrix_size2 (a);
-       traits::detail::array<value_type> work(std::max(1, n));
+       traits::detail::array<value_type> work(std::max<int>(1, n));
        return geqrf( a, tau, work );
     }
 
@@ -159,7 +159,7 @@ namespace boost { namespace numeric { namespace bindings {
     int geqrf (A& a, Tau& tau, detail::workspace1<Work> workspace ) {
        typedef typename A::value_type value_type ;
        const int n = traits::matrix_size2 (a);
-       traits::detail::array<value_type> work(std::max(1, n));
+       traits::detail::array<value_type> work(std::max<int>(1, n));
        return geqrf( a, tau, workspace.w_ );
     }
 
