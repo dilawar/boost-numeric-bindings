@@ -175,6 +175,9 @@
 #define LAPACK_CTREXC FORTRAN_ID( ctrexc )
 #define LAPACK_ZTREXC FORTRAN_ID( ztrexc )
 
+// generalized eigenvalue/eigenvector
+#define LAPACK_SSYGV FORTRAN_ID( ssygv ) 
+#define LAPACK_DSYGV FORTRAN_ID( dsygv )
 
 /********************************************/
 /* eigenproblems for banded matrices */ 
@@ -209,6 +212,15 @@
 
 #define LAPACK_SSYTRD FORTRAN_ID( ssytrd )
 #define LAPACK_DSYTRD FORTRAN_ID( dsytrd )
+
+// generates an M-by-N real matrix Q with orthonormal columns,
+// which is defined as the first N columns of a product of K elementary
+//  reflectors of order M
+//        Q  =  H(1) H(2) . . . H(k)
+
+#define LAPACK_SORGQR FORTRAN_ID( sorgqr )
+#define LAPACK_DORGQR FORTRAN_ID( dorgqr )
+
 
 
 /********************************************/
