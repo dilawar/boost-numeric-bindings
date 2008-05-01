@@ -179,6 +179,18 @@
 #define LAPACK_SSYGV FORTRAN_ID( ssygv ) 
 #define LAPACK_DSYGV FORTRAN_ID( dsygv )
 
+#define LAPACK_SSYEVD FORTRAN_ID( ssyevd )
+#define LAPACK_DSYEVD FORTRAN_ID( dsyevd )
+#define LAPACK_CHEEVD FORTRAN_ID( cheevd )
+#define LAPACK_ZHEEVD FORTRAN_ID( zheevd )
+
+#define LAPACK_SSYEVX FORTRAN_ID( ssyevx )
+#define LAPACK_DSYEVX FORTRAN_ID( dsyevx )
+#define LAPACK_CHEEVX FORTRAN_ID( cheevx )
+#define LAPACK_ZHEEVX FORTRAN_ID( zheevx )
+
+
+
 /********************************************/
 /* eigenproblems for banded matrices */ 
 
