@@ -189,6 +189,11 @@
 #define LAPACK_CHEEVX FORTRAN_ID( cheevx )
 #define LAPACK_ZHEEVX FORTRAN_ID( zheevx )
 
+#define LAPACK_SSBEVX FORTRAN_ID( ssbevx )
+#define LAPACK_DSBEVX FORTRAN_ID( dsbevx )
+#define LAPACK_CHBEVX FORTRAN_ID( chbevx )
+#define LAPACK_ZHBEVX FORTRAN_ID( zhbevx )
+
 
 
 /********************************************/
