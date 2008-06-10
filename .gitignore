@@ -3,3 +3,4 @@ Makefile
 *.swp
 *.patch
 .svn
+*.orig
