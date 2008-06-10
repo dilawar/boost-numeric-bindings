@@ -28,6 +28,13 @@ struct vct_access_traits<V const> {
   static ref_t elem (V const& v, size_t i) { return v[i]; }
 };
 
+template <typename V, int N>
+struct vct_access_traits<const V[N]> {
+  typedef V val_t;
+  typedef val_t ref_t; 
+  static ref_t elem (const V v[N], size_t i) { return v[i]; }
+};
+
 template <typename V>
 inline
 typename vct_access_traits<V>::ref_t elem_v (V& v, size_t i) {
@@ -112,8 +119,9 @@ void print_v (V const& v, char const* ch = 0) {
 template <typename M>
 struct matr_access_traits {
   typedef typename 
-  boost::numeric::bindings::traits::matrix_traits<M>::value_type val_t;
-  typedef val_t& ref_t; 
+  M::reference ref_t;
+  //boost::numeric::bindings::traits::matrix_traits<M>::value_type val_t;
+  //typedef val_t& ref_t; 
   static ref_t elem (M& m, size_t i, size_t j) { return m (i, j); }
 };
 

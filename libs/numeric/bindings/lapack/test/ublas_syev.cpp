@@ -1,64 +1,25 @@
-//  Permission to copy, use, modify, sell and
-//  distribute this software is granted provided this copyright notice appears
-//  in all copies. This software is provided "as is" without express or implied
-//  warranty, and with no claim as to its suitability for any purpose.
+//
 //  Copyright Toon Knapen, Karl Meerbergen
 //
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+//
 
-#include "../../blas/test/random.hpp"
+#include "ublas_heev.hpp"
 
 #include <boost/numeric/bindings/lapack/syev.hpp>
 #include <boost/numeric/bindings/traits/ublas_matrix.hpp>
 #include <boost/numeric/bindings/traits/ublas_vector.hpp>
+#include <boost/numeric/ublas/matrix_proxy.hpp>
+#include <boost/numeric/ublas/vector_proxy.hpp>
 #include <boost/numeric/ublas/io.hpp>
 
 #include <iostream>
-#include <limits>
 
 
 namespace ublas = boost::numeric::ublas;
 namespace lapack = boost::numeric::bindings::lapack;
-
-
-// Fill a matrix
-template <typename M>
-void fill(M& m) {
-   typedef typename M::size_type  size_type ;
-   typedef typename M::value_type value_type ;
-
-   typedef typename boost::numeric::bindings::traits::type_traits<value_type>::real_type real_type ;
-
-   int size = m.size2() ;
-
-   for (int i=0; i<size; ++i) {
-      for (int j=0; j<i; ++j) {
-         m(j,i) = random_value<value_type>();
-         m(i,j) = m(j,i);
-      }
-      m(i,i) = random_value<real_type>();
-   }
-} // randomize()
-
-
-template <typename H, typename E, typename Z>
-int check_residual(H const& h, E const& e, Z const& z) {
-   typedef typename H::value_type value_type ;
-   typedef typename E::value_type real_type ;
-
-   // Check eigen decomposition
-   int n = h.size1();
-   ublas::matrix<value_type> error( n, n ); error.clear();
-
-   // Copy band matrix in error
-   error.assign( h );
-   assert( norm_frobenius( error - trans( error ) ) == 0.0 ) ;
-
-   for (int i=0; i<n; ++i) {
-      error .minus_assign( outer_prod( z.column(i), e(i) * conj( z.column(i) ) ) ) ;
-   }
-   return (norm_frobenius( error )
-           >= n* norm_2( e ) * std::numeric_limits< real_type >::epsilon() ) ;
-} // check_residual()
 
 
 template <typename T, typename W, char UPLO>
@@ -95,7 +56,8 @@ int do_memory_uplo(int n, W& workspace ) {
 
    lapack::syev('V', UPLO,  a_r, e_r, workspace );
 
-   if (check_residual( a2(r,r), e_r, a_r )) return 255 ;
+   matrix_range a2_r( a2, r, r );
+   if (check_residual( a2_r, e_r, a_r )) return 255 ;
 
    return 0 ;
 } // do_memory_uplo()

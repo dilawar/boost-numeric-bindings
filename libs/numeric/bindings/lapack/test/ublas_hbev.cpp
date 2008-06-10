@@ -1,11 +1,12 @@
-//  Permission to copy, use, modify, sell and
-//  distribute this software is granted provided this copyright notice appears
-//  in all copies. This software is provided "as is" without express or implied
-//  warranty, and with no claim as to its suitability for any purpose.
+//
 //  Copyright Toon Knapen, Karl Meerbergen
 //
+// Distributed under the Boost Software License, Version 1.0.
+// (See accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+//
 
-#include "../../blas/test/random.hpp"
+#include "ublas_heev.hpp"
 
 #include <boost/numeric/bindings/lapack/hbev.hpp>
 #include <boost/numeric/ublas/matrix_proxy.hpp>
@@ -18,29 +19,10 @@
 #include <boost/numeric/ublas/io.hpp>
 
 #include <iostream>
-#include <limits>
 
 
 namespace ublas = boost::numeric::ublas;
 namespace lapack = boost::numeric::bindings::lapack;
-
-
-// Fill a matrix
-template <typename M>
-void fill(M& m) {
-   typedef typename M::size_type  size_type ;
-   typedef typename M::value_type value_type ;
-
-   typedef typename boost::numeric::bindings::traits::type_traits<value_type>::real_type real_type ;
-
-   int size = m.size2() ;
-   int band = m.upper() ;
-
-   for (int i=0; i<size; ++i) {
-      for (int j=std::max(0,i-band); j<i; ++j) m(j,i) = random_value<value_type>();
-      m(i,i) = random_value<real_type>();
-   }
-} // randomize()
 
 
 template <typename U>
@@ -60,26 +42,6 @@ int upper() {
 template <>
 int upper<ublas::upper>() { return 2; }
 
-template <typename H, typename E, typename Z>
-int check_residual(H const& h, E const& e, Z const& z) {
-   typedef typename H::value_type value_type ;
-   typedef typename E::value_type real_type ;
-
-   // Check eigen decomposition
-   int n = h.size1();
-   ublas::matrix<value_type> error( n, n ); error.clear();
-
-   // Copy band matrix in error
-   error.assign( h );
-   assert( norm_frobenius( error - herm( error ) ) == 0.0 ) ;
-
-   for (int i=0; i<n; ++i) {
-      error .minus_assign( outer_prod( z.column(i), e(i) * conj( z.column(i) ) ) ) ;
-   }
-   return (norm_frobenius( error )
-           >= n* norm_2( e ) * std::numeric_limits< real_type >::epsilon() ) ;
-} // check_residual()
-
 
 template <typename T, typename W, typename UPLO, typename Orientation>
 int do_memory_uplo(int n, W& workspace ) {
@@ -95,7 +57,7 @@ int do_memory_uplo(int n, W& workspace ) {
    vector_type e1( n );
    vector_type e2( n );
 
-   fill( a );
+   fill_banded( a );
    banded_type a2( a );
 
    ublas::hermitian_adaptor<banded_type, UPLO> h( a ), h2( a2 );
@@ -109,7 +71,7 @@ int do_memory_uplo(int n, W& workspace ) {
    if (norm_2( e1 - e2 ) > n * norm_2( e1 ) * std::numeric_limits< real_type >::epsilon()) return 255 ;
 
    // Test for a matrix range
-   fill( a ); a2.assign( a );
+   fill_banded( a ); a2.assign( a );
 
    typedef ublas::matrix_range< banded_type > banded_range ;
 
@@ -121,7 +83,9 @@ int do_memory_uplo(int n, W& workspace ) {
 
    lapack::hbev( h_r, e_r, z_r, workspace );
 
-   if (check_residual( h2(r,r), e_r, z_r )) return 255 ;
+   banded_range a2_r( a2, r, r );
+   ublas::hermitian_adaptor< banded_range, UPLO> h2_r( a2_r );
+   if (check_residual( h2_r, e_r, z_r )) return 255 ;
 
    return 0 ;
 } // do_memory_uplo()

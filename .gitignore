@@ -4,3 +4,4 @@ Makefile
 *.patch
 .svn
 *.orig
+*.rej
