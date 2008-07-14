@@ -113,6 +113,12 @@
 #define LAPACK_CHETRS FORTRAN_ID( chetrs )
 #define LAPACK_ZHETRS FORTRAN_ID( zhetrs )
 
+#define LAPACK_SSYTRI FORTRAN_ID( ssytri )
+#define LAPACK_DSYTRI FORTRAN_ID( dsytri )
+#define LAPACK_CSYTRI FORTRAN_ID( csytri )
+#define LAPACK_ZSYTRI FORTRAN_ID( zsytri )
+
+
 
 /* symmetric/Hermitian indefinite and complex symmetric in packed storage */
 
@@ -136,6 +142,13 @@
 #define LAPACK_ZSPTRS FORTRAN_ID( zsptrs )
 #define LAPACK_CHPTRS FORTRAN_ID( chptrs )
 #define LAPACK_ZHPTRS FORTRAN_ID( zhptrs )
+
+#define LAPACK_SSPTRI FORTRAN_ID( ssptri )
+#define LAPACK_DSPTRI FORTRAN_ID( dsptri )
+#define LAPACK_CSPTRI FORTRAN_ID( csptri )
+#define LAPACK_ZSPTRI FORTRAN_ID( zsptri )
+#define LAPACK_CHPTRI FORTRAN_ID( chptri )
+#define LAPACK_ZHPTRI FORTRAN_ID( zhptri )
 
 /* banded solve */
 
