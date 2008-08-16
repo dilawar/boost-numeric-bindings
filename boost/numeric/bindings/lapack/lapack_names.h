@@ -174,11 +174,6 @@
 #define LAPACK_CHEEV FORTRAN_ID( cheev )
 #define LAPACK_ZHEEV FORTRAN_ID( zheev )
 
-#define LAPACK_SHSEQR FORTRAN_ID( shseqr )
-#define LAPACK_DHSEQR FORTRAN_ID( dhseqr )
-#define LAPACK_CHSEQR FORTRAN_ID( chseqr )
-#define LAPACK_ZHSEQR FORTRAN_ID( zhseqr )
-
 #define LAPACK_STREVC FORTRAN_ID( strevc )
 #define LAPACK_DTREVC FORTRAN_ID( dtrevc )
 #define LAPACK_CTREVC FORTRAN_ID( ctrevc )
@@ -208,7 +203,13 @@
 #define LAPACK_CHBEVX FORTRAN_ID( chbevx )
 #define LAPACK_ZHBEVX FORTRAN_ID( zhbevx )
 
+/********************************************/
+/* eigenproblems for Hessenberg matrices */ 
 
+#define LAPACK_SHSEQR FORTRAN_ID( shseqr )
+#define LAPACK_DHSEQR FORTRAN_ID( dhseqr )
+#define LAPACK_CHSEQR FORTRAN_ID( chseqr )
+#define LAPACK_ZHSEQR FORTRAN_ID( zhseqr )
 
 /********************************************/
 /* eigenproblems for banded matrices */ 

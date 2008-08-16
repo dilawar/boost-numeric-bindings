@@ -370,6 +370,7 @@ extern "C" {
                      dcomplex_t* work, const int * lwork, double* rwork,
                      int* info );
 
+  /* Hessenberg matrices */
 
   void LAPACK_SHSEQR( const char* job, const char* compz, const int* n, 
                       const int* ilo, const int* ihi, float* H, 
