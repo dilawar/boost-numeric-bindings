@@ -10,8 +10,6 @@
  * University of Zagreb, Croatia.
  *
  */
-/* Modified to include xPPTRI by Kian Ming A. Chai (14 May 2008) */
-
 
 #ifndef BOOST_NUMERIC_BINDINGS_LAPACK_LAPACK_H
 #define BOOST_NUMERIC_BINDINGS_LAPACK_LAPACK_H
@@ -150,6 +148,7 @@ extern "C" {
                       fcomplex_t* ap, int* info);
   void LAPACK_ZPPTRI (char const* uplo, int const* n, 
                       dcomplex_t* ap, int* info);
+
 
   /* symmetric/Hermitian indefinite and complex symmetric */
 
@@ -370,24 +369,6 @@ extern "C" {
                      dcomplex_t* work, const int * lwork, double* rwork,
                      int* info );
 
-  /* Hessenberg matrices */
-
-  void LAPACK_SHSEQR( const char* job, const char* compz, const int* n, 
-                      const int* ilo, const int* ihi, float* H, 
-                      const int* ldH, float* wr, float* wi, fcomplex_t* Z, 
-                      const int* ldz, float* work, const int* lwork, int* info);
-  void LAPACK_DHSEQR( const char* job, const char* compz, const int* n, 
-                      const int* ilo, const int* ihi, double* H, 
-                      const int* ldH, double* wr, double* wi, dcomplex_t* Z, 
-                      const int* ldz, double* work, const int* lwork, int* info);
-  void LAPACK_CHSEQR( const char* job, const char* compz, const int* n, 
-                      const int* ilo, const int* ihi, fcomplex_t* H, const int* ldH, 
-                      fcomplex_t* w, fcomplex_t* Z, const int* ldz, 
-                      fcomplex_t* work, const int* lwork, int* info);
-  void LAPACK_ZHSEQR( const char* job, const char* compz, const int* n, 
-                      const int* ilo, const int* ihi, dcomplex_t* H, const int* ldH, 
-                      dcomplex_t* w, dcomplex_t* Z, const int* ldz, 
-                      dcomplex_t* work, const int* lwork, int* info);
 
   void LAPACK_CTREVC( const char* side, const char* howmny, const logical_t* select, const int *n,
                      fcomplex_t* t, const int * ldt, fcomplex_t* vl, const int* ldvl,
@@ -426,6 +407,25 @@ extern "C" {
                      dcomplex_t* t, const int * ldt, dcomplex_t* q, const int* ldq,
 		     int* ifst, const int * ilst, int* info );
 
+
+  /* Hessenberg matrices */
+
+  void LAPACK_SHSEQR( const char* job, const char* compz, const int* n, 
+                      const int* ilo, const int* ihi, float* H, 
+                      const int* ldH, float* wr, float* wi, fcomplex_t* Z, 
+                      const int* ldz, float* work, const int* lwork, int* info);
+  void LAPACK_DHSEQR( const char* job, const char* compz, const int* n, 
+                      const int* ilo, const int* ihi, double* H, 
+                      const int* ldH, double* wr, double* wi, dcomplex_t* Z, 
+                      const int* ldz, double* work, const int* lwork, int* info);
+  void LAPACK_CHSEQR( const char* job, const char* compz, const int* n, 
+                      const int* ilo, const int* ihi, fcomplex_t* H, const int* ldH, 
+                      fcomplex_t* w, fcomplex_t* Z, const int* ldz, 
+                      fcomplex_t* work, const int* lwork, int* info);
+  void LAPACK_ZHSEQR( const char* job, const char* compz, const int* n, 
+                      const int* ilo, const int* ihi, dcomplex_t* H, const int* ldH, 
+                      dcomplex_t* w, dcomplex_t* Z, const int* ldz, 
+                      dcomplex_t* work, const int* lwork, int* info);
 
   /* Hermitian tridiagonal matrices */
   
@@ -527,7 +527,6 @@ extern "C" {
                       int* iwork, int* ifail, int* info );
 
 
-
   /*********************************************************************/
   /*       Auxiliary routines for eigenvalue problems                  */
   /*********************************************************************/
@@ -539,16 +538,25 @@ extern "C" {
                       double* e, double* tau, double* work, int const* lwork, int* INFO ) ;
 
 
-  /* Generalized eigenvalue/ eigenvector */
+  /**********************************************************************/
+  /*               generalized eigenvalue / eigenvector                 */
+  /**********************************************************************/
+
    void LAPACK_SSYGV(int const *itype, char const *jobz, char const *uplo, int const *n, 
 					float *a, int const *lda, float *b, int const *ldb, 
-					float *w, float *work, int const *lwork, int const *info);
+                     float* w, float* work, int const* lwork, int* info);
 
    void LAPACK_DSYGV(int const *itype, char const* jobz, char const *uplo, int const * n, 
 					double *a, int const *lda, double *b, int const *ldb,
-					double *w, double *work, int const *lwork, int const *info);
+                     double* w, double* work, int const* lwork, int* info);
 
+   void LAPACK_CHEGV(int const* itype, char const* jobz, char const* uplo, int const* n,
+                     fcomplex_t* a, int const* lda, fcomplex_t* b, int const* ldb,
+                     float* w, fcomplex_t* work, int const* lwork, float* rwork, int* info);
 
+   void LAPACK_ZHEGV(int const *itype, char const* jobz, char const *uplo, int const * n,
+                     dcomplex_t *a, int const *lda, dcomplex_t *b, int const *ldb,
+                     double *w, dcomplex_t *work, int const *lwork, double* rwork, int* info);
 
 
   /*********************************************************************/

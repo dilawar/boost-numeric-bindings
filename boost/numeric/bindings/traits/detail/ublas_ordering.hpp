@@ -92,17 +92,17 @@ namespace boost { namespace numeric { namespace bindings { namespace traits {
 
       template <typename M>
       static int leading_dimension( M const& m ) {
-        return m.lower() + m.upper() + 1 ;
+        return m.size2() ;
       }
 
       template <typename M>
       static int stride1( M const& m ) {
-        return std::max(m.size1(), m.size2()) ;
+        return leading_dimension(m) ;
       }
 
       template <typename M>
       static int stride2( M const& m ) {
-        return 1 ;
+        return 1-leading_dimension(m) ;
       }
     };
   }
