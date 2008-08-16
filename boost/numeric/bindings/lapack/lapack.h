@@ -74,7 +74,6 @@ extern "C" {
 		      fcomplex_t* work, int const* lwork, int* info);
   void LAPACK_ZGETRI (int const* n, dcomplex_t* a, int const* lda,	int const* ipiv, 
 		      dcomplex_t* work, int const* lwork, int* info);
-  
   /* symmetric/Hermitian positive definite */
 
   void LAPACK_SPOSV (char const* uplo, int const* n, int const* nrhs, 
@@ -223,7 +222,7 @@ extern "C" {
   void LAPACK_ZSYTRI (char const* uplo, int const* n, dcomplex_t* a, 
 		      int const* lda, int const* ipiv, dcomplex_t* work, 
 		      int* info);
-  
+ 
   void LAPACK_CHETRS (char const* uplo, int const* n, int const* nrhs,
                       fcomplex_t const* a, int const* lda, int const* ipiv, 
                       fcomplex_t* b, int const* ldb, int* info);
@@ -542,12 +541,12 @@ extern "C" {
   /*               generalized eigenvalue / eigenvector                 */
   /**********************************************************************/
 
-   void LAPACK_SSYGV(int const *itype, char const *jobz, char const *uplo, int const *n, 
-					float *a, int const *lda, float *b, int const *ldb, 
+   void LAPACK_SSYGV(int const* itype, char const* jobz, char const* uplo, int const* n,
+                     float* a, int const* lda, float* b, int const* ldb,
                      float* w, float* work, int const* lwork, int* info);
 
-   void LAPACK_DSYGV(int const *itype, char const* jobz, char const *uplo, int const * n, 
-					double *a, int const *lda, double *b, int const *ldb,
+   void LAPACK_DSYGV(int const* itype, char const* jobz, char const* uplo, int const* n,
+                     double* a, int const* lda, double* b, int const* ldb,
                      double* w, double* work, int const* lwork, int* info);
 
    void LAPACK_CHEGV(int const* itype, char const* jobz, char const* uplo, int const* n,
@@ -648,17 +647,18 @@ extern "C" {
                       dcomplex_t* c, const int* ldc, dcomplex_t* work,
                       const int* lwork, int* info );
 
-	
-	// generates an M-by-N real matrix Q with orthonormal columns,
-	// which is defined as the first N columns of a product of K elementary
-	//  reflectors of order M
-	//        Q  =  H(1) H(2) . . . H(k)
-	void LAPACK_SORGQR(const int *m, const int *n, const int *k, float *a, 
-					   const int *lda, float *tau, 
-					   float *work, const int *lwork, const int *info);
-	void LAPACK_DORGQR(const int *m, const int *n, const int *k, 
-					   double *a, const int *lda, double *tau, 
-					   double *work, const int *lwork, const int *info);
+  void LAPACK_SORGQR( const int* m, const int* n, const int* k,
+                      float* a, const int* lda, float* tau,
+                      float* work, const int* lwork, const int* info);
+  void LAPACK_DORGQR( const int* m, const int* n, const int* k,
+                      double* a, const int* lda, double* tau,
+                      double* work, const int* lwork, const int* info);
+  void LAPACK_CUNGQR( const int* m, const int* n, const int* k,
+                      fcomplex_t* a, const int* lda, fcomplex_t* tau,
+                      fcomplex_t* work, const int* lwork, const int* info);
+  void LAPACK_ZUNGQR( const int* m, const int* n, const int* k,
+                      dcomplex_t* a, const int* lda, dcomplex_t* tau,
+                      dcomplex_t* work, const int* lwork, const int* info);
 
 
   /********************************************************************/
