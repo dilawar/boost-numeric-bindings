@@ -175,16 +175,6 @@
 #define LAPACK_CHEEV FORTRAN_ID( cheev )
 #define LAPACK_ZHEEV FORTRAN_ID( zheev )
 
-#define LAPACK_STREVC FORTRAN_ID( strevc )
-#define LAPACK_DTREVC FORTRAN_ID( dtrevc )
-#define LAPACK_CTREVC FORTRAN_ID( ctrevc )
-#define LAPACK_ZTREVC FORTRAN_ID( ztrevc )
-
-#define LAPACK_STREXC FORTRAN_ID( strexc )
-#define LAPACK_DTREXC FORTRAN_ID( dtrexc )
-#define LAPACK_CTREXC FORTRAN_ID( ctrexc )
-#define LAPACK_ZTREXC FORTRAN_ID( ztrexc )
-
 // generalized eigenvalue/eigenvector
 #define LAPACK_SSYGV FORTRAN_ID( ssygv ) 
 #define LAPACK_DSYGV FORTRAN_ID( dsygv )
@@ -199,10 +189,15 @@
 #define LAPACK_CHEEVX FORTRAN_ID( cheevx )
 #define LAPACK_ZHEEVX FORTRAN_ID( zheevx )
 
-#define LAPACK_SSBEVX FORTRAN_ID( ssbevx )
-#define LAPACK_DSBEVX FORTRAN_ID( dsbevx )
-#define LAPACK_CHBEVX FORTRAN_ID( chbevx )
-#define LAPACK_ZHBEVX FORTRAN_ID( zhbevx )
+#define LAPACK_STREVC FORTRAN_ID( strevc )
+#define LAPACK_DTREVC FORTRAN_ID( dtrevc )
+#define LAPACK_CTREVC FORTRAN_ID( ctrevc )
+#define LAPACK_ZTREVC FORTRAN_ID( ztrevc )
+
+#define LAPACK_STREXC FORTRAN_ID( strexc )
+#define LAPACK_DTREXC FORTRAN_ID( dtrexc )
+#define LAPACK_CTREXC FORTRAN_ID( ctrexc )
+#define LAPACK_ZTREXC FORTRAN_ID( ztrexc )
 
 /********************************************/
 /* eigenproblems for Hessenberg matrices */ 
@@ -220,6 +215,10 @@
 #define LAPACK_CHBEV FORTRAN_ID( chbev )
 #define LAPACK_ZHBEV FORTRAN_ID( zhbev )
 
+#define LAPACK_SSBEVX FORTRAN_ID( ssbevx )
+#define LAPACK_DSBEVX FORTRAN_ID( dsbevx )
+#define LAPACK_CHBEVX FORTRAN_ID( chbevx )
+#define LAPACK_ZHBEVX FORTRAN_ID( zhbevx )
 
 /********************************************/
 /* eigenproblems for tridiagonal matrices */ 
@@ -227,6 +226,13 @@
 #define LAPACK_SSTEQR FORTRAN_ID( ssteqr )
 #define LAPACK_DSTEQR FORTRAN_ID( dsteqr )
 
+/********************************************/
+/* generalized eigenvalue/eigenvector */
+
+#define LAPACK_SSYGV FORTRAN_ID( ssygv ) 
+#define LAPACK_DSYGV FORTRAN_ID( dsygv )
+#define LAPACK_CHEGV FORTRAN_ID( chegv ) 
+#define LAPACK_ZHEGV FORTRAN_ID( zhegv )
 
 /********************************************/
 /* QR factorization */
@@ -243,17 +249,13 @@
 #define LAPACK_CUNMQR FORTRAN_ID( cunmqr )
 #define LAPACK_ZUNMQR FORTRAN_ID( zunmqr )
 
-#define LAPACK_SSYTRD FORTRAN_ID( ssytrd )
-#define LAPACK_DSYTRD FORTRAN_ID( dsytrd )
-
-// generates an M-by-N real matrix Q with orthonormal columns,
-// which is defined as the first N columns of a product of K elementary
-//  reflectors of order M
-//        Q  =  H(1) H(2) . . . H(k)
-
 #define LAPACK_SORGQR FORTRAN_ID( sorgqr )
 #define LAPACK_DORGQR FORTRAN_ID( dorgqr )
+#define LAPACK_CUNGQR FORTRAN_ID( cungqr )
+#define LAPACK_ZUNGQR FORTRAN_ID( zungqr )
 
+#define LAPACK_SSYTRD FORTRAN_ID( ssytrd )
+#define LAPACK_DSYTRD FORTRAN_ID( dsytrd )
 
 
 /********************************************/
