@@ -56,7 +56,7 @@ namespace boost { namespace numeric { namespace bindings {
     namespace detail {
 
 
-	  inline 
+      inline 
       void orgqr(int const m, int const n, int const k,
                  float* a, int const lda,
                  float* tau, float* work, int const lwork, int& info) 
@@ -90,7 +90,7 @@ namespace boost { namespace numeric { namespace bindings {
                        traits::complex_ptr(work), &lwork, &info);
       }
 
-	} // fin namespace detail
+    } // fin namespace detail
 
 
 	//--------------------------------------------

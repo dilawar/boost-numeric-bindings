@@ -109,10 +109,10 @@ namespace boost { namespace numeric { namespace bindings {
       {
         LAPACK_CHEEVX (
           &jobz, &range, &uplo, &n,
-          reinterpret_cast<fcomplex_t*>(a), &lda,
+          traits::complex_ptr(a), &lda,
           &vl, &vu, &il, &iu, &abstol, &m, w,
-          reinterpret_cast<fcomplex_t*>(z), &ldz,
-          reinterpret_cast<fcomplex_t*>(work), &lwork,
+          traits::complex_ptr(z), &ldz,
+          traits::complex_ptr(work), &lwork,
           rwork, iwork, ifail, &info);
       }
 
@@ -126,10 +126,10 @@ namespace boost { namespace numeric { namespace bindings {
       {
         LAPACK_ZHEEVX (
           &jobz, &range, &uplo, &n,
-          reinterpret_cast<dcomplex_t*>(a), &lda,
+          traits::complex_ptr(a), &lda,
           &vl, &vu, &il, &iu, &abstol, &m, w,
-          reinterpret_cast<dcomplex_t*>(z), &ldz,
-          reinterpret_cast<dcomplex_t*>(work), &lwork,
+          traits::complex_ptr(z), &ldz,
+          traits::complex_ptr(work), &lwork,
           rwork, iwork, ifail, &info);
       }
     } // namespace detail
@@ -291,8 +291,8 @@ namespace boost { namespace numeric { namespace bindings {
 #endif
 
       int const n = traits::matrix_size1 (a);
-      assert (traits::matrix_size2 (a)==n);
-      assert (traits::vector_size (w)==n);
+      assert (traits::matrix_size2 (a) == n);
+      assert (traits::vector_size (w) == n);
       assert (traits::vector_size (ifail) == n);
       assert ( range=='A' || range=='V' || range=='I' );
       char uplo = traits::matrix_uplo_tag (a);
