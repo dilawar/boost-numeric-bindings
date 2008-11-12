@@ -76,6 +76,7 @@
 #include <algorithm> 
 #include <complex> 
 #include <math.h>
+#include <boost/mpl/and.hpp>
 #include <boost/numeric/bindings/traits/c_array.hpp>
 #include <boost/numeric/bindings/traits/std_vector.hpp>
 #include <boost/numeric/bindings/traits/ublas_sparse.hpp>
@@ -112,6 +113,7 @@ void wait4y() {
     cout << "Continue (y/n) -> "; 
     cin >> yes; 
     if (yes == 'y') break;
+    if (yes == 'n') exit (0);
   }
 } 
 
@@ -171,7 +173,14 @@ double resid (M const& A, V const& x, V const& b, V& r, int transpose = 0) {
 /* main program                                                        */
 /* ------------------------------------------------------------------- */
 
-int main() {
+int main (int argc, char **argv) {
+  bool call_wait4y = true;
+  if (argc > 1) {
+    char *s = argv [1];
+    if (s [0] == '-' && s [1] == 'y') {
+      call_wait4y = false;
+    }
+  }
 
   /* ---------------------------------------------------------------- */
   /* initialisations                                                  */
@@ -224,7 +233,7 @@ int main() {
   /* symbolic factorisation                                           */
   /* ---------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nSymbolic factorisation:" << endl; 
 
@@ -243,7 +252,7 @@ int main() {
   /* numeric factorisation                                            */
   /* ---------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nNumeric factorisation:" << endl; 
 
@@ -262,7 +271,7 @@ int main() {
   /* solve Ax=b                                                       */
   /* ---------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nSolve Ax = b:" << endl; 
 
@@ -283,7 +292,7 @@ int main() {
   /* solve Ax=b, broken down into steps                               */
   /* ---------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nSolve Ax = b (broken down into steps):" << endl; 
 
@@ -314,7 +323,7 @@ int main() {
   /* note that this is the complex conjugate transpose, A'               */
   /* ------------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nSolve A'x = b:" << endl; 
 
@@ -335,7 +344,7 @@ int main() {
   /* modify one numerical value in the column-form of A                */
   /* ----------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nModify A (1,4) if present:" << endl; 
 
@@ -359,7 +368,7 @@ int main() {
   /* redo the numeric factorization                                    */
   /* ----------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nRedo the numeric factorization:" << endl; 
 
@@ -386,7 +395,7 @@ int main() {
   /* solve Ax=b, with the modified A                                    */
   /* ------------------------------------------------------------------ */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nSolve Ax = b with the modified A:" << endl; 
   
@@ -408,7 +417,7 @@ int main() {
   /* modify all of the numerical values of A, but not the pattern       */
   /* ------------------------------------------------------------------ */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nModify numerical values of A:" << endl; 
 
@@ -432,7 +441,7 @@ int main() {
   /* redo the numeric factorization                                     */
   /* ------------------------------------------------------------------ */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nRedo the numeric factorization:" << endl; 
 
@@ -451,7 +460,7 @@ int main() {
   /* solve Ax=b, with the modified A                                    */
   /* ------------------------------------------------------------------ */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nSolve Ax = b with the modified A:" << endl; 
   
@@ -479,7 +488,7 @@ int main() {
   /* C = transpose of A                                               */
   /* ---------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nC = transpose of A:" << endl; 
 
@@ -491,7 +500,7 @@ int main() {
   /* symbolic factorization of C                                       */
   /* ----------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nSymbolic factorization of C:" << endl; 
 
@@ -508,7 +517,7 @@ int main() {
   /* numeric factorization of C                                        */
   /* ----------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nNumeric factorization of C:" << endl; 
 
@@ -525,7 +534,7 @@ int main() {
   /* solve C'x=b                                                       */
   /* ----------------------------------------------------------------- */
 
-  wait4y(); 
+  if (call_wait4y) wait4y(); 
 
   cout << "\nSolve C'x = b:" << endl; 
 

@@ -40,16 +40,21 @@ void init_symm2 (M& m) {
       m (i, j) = m (j, i) = 1 + j - i; 
 }
 
-int main() {
+int main (int argc, char **argv) {
+  size_t n = 0;
+  if (argc > 1) {
+    n = atoi(argv [1]);
+  }
 
   cout << endl; 
 
   // symmetric 
   cout << "real symmetric\n" << endl; 
 
-  size_t n;
+  if (n <= 0) {
   cout << "n -> ";
   cin >> n;
+  }
   if (n < 5) n = 5; 
   cout << "min n = 5" << endl << endl; 
   size_t nrhs = 2; 
@@ -92,15 +97,21 @@ int main() {
   
   int err = lapack::sytrf (sal, ipiv);  
   if (err == 0) {
+    symml_t isal (sal);
     lapack::sytrs (sal, ipiv, bl); 
     print_m (bl, "xl"); 
+    lapack::sytri (isal, ipiv);
+    print_m (isal, "isal"); 
   } 
   cout << endl; 
 
   err = lapack::sytrf (sau, ipiv);  
   if (err == 0) {
+    symmu_t isau (sau);
     lapack::sytrs (sau, ipiv, bu); 
     print_m (bu, "xu"); 
+    lapack::sytri (isau, ipiv);
+    print_m (isau, "isau"); 
   } 
   else 
     cout << "?" << endl; 
@@ -191,8 +202,11 @@ int main() {
 
   int ierr = lapack::sytrf (scal, ipiv); 
   if (ierr == 0) {
+    csymml_t iscal (scal);
     lapack::sytrs (scal, ipiv, cbl); 
     print_m (cbl, "cxl"); 
+    lapack::sytri (iscal, ipiv);
+    print_m (iscal, "iscal"); 
   }
   else 
     cout << "?" << endl;
@@ -210,10 +224,13 @@ int main() {
 
   ierr = lapack::sytrf (scau, ipiv, cwork); 
   if (ierr == 0) {
+    csymmu_t iscau (scau);
     lapack::sytrs (scau, ipiv, cbu); 
     print_v (ipiv, "ipiv"); 
     cout << endl; 
     print_m (cbu, "cxu"); 
+    lapack::sytri (iscau, ipiv);
+    print_m (iscau, "iscau"); 
   }
   else 
     cout << "?" << endl;
