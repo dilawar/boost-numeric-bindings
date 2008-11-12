@@ -191,10 +191,6 @@
 #define LAPACK_CHEEV FORTRAN_ID( cheev )
 #define LAPACK_ZHEEV FORTRAN_ID( zheev )
 
-// generalized eigenvalue/eigenvector
-#define LAPACK_SSYGV FORTRAN_ID( ssygv ) 
-#define LAPACK_DSYGV FORTRAN_ID( dsygv )
-
 #define LAPACK_SSYEVD FORTRAN_ID( ssyevd )
 #define LAPACK_DSYEVD FORTRAN_ID( dsyevd )
 #define LAPACK_CHEEVD FORTRAN_ID( cheevd )
