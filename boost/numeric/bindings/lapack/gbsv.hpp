@@ -54,13 +54,13 @@ namespace boost { namespace numeric { namespace bindings {
       int const m = traits::matrix_size2 (a); 
       assert (traits::vector_size (ipiv) == (m < n ? m : n));
 
-      // if the matrix has kl lower and ku upper diagonals, then we should have 
+      // if the matrix has kl lower and ku upper diagonals, then we should have
       // allocated kl lower and kl+ku upper diagonals
       int const kl = traits::matrix_lower_bandwidth (a);
       int const ku = traits::matrix_upper_bandwidth (a) - kl;
       int const ld = traits::leading_dimension (a);
 
-      assert(ku > 0);
+      assert(ku >= 0);
 
       int info; 
       detail::gbtrf (n, m, kl, ku,
@@ -101,13 +101,13 @@ namespace boost { namespace numeric { namespace bindings {
       assert (n == traits::matrix_size1 (b)); 
       assert (n == traits::vector_size (ipiv)); 
 
-      // if the matrix has kl lower and ku upper diagonals, then we should have 
+      // if the matrix has kl lower and ku upper diagonals, then we should have
       // allocated kl lower and kl+ku upper diagonals
       int const kl = traits::matrix_lower_bandwidth (a);
       int const ku = traits::matrix_upper_bandwidth (a) - kl;
       int const ld = traits::leading_dimension (a);
 
-      assert(ku > 0);
+      assert(ku >= 0);
 
       int info; 
       detail::gbtrs (trans, n, kl, ku, traits::matrix_size2 (b), 
